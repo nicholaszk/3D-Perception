@@ -31,6 +31,13 @@ Using RGB-D cameras to collect data, point clouds (PCs) were created, segmented,
 ### Here I will consider the rubric points individually and describe how I addressed each point in my implementation.  
 
 ---
+  
+[//]: # (Image References)
+
+[image1]: ./perceptionPics/trainSvmScore.JPG
+[image2]: ./perceptionPics/normalizedConfusionMatrix.JPG
+[image3]: ./perceptionPics/nonNormalConfusionMatrix.JPG
+  
 ### Writeup / README
 
 #### 1. Provide a Writeup / README that includes all the rubric points and how you addressed each one.  You can submit your writeup as markdown or pdf.  
@@ -48,6 +55,10 @@ Here is an example of how to include an image in your writeup.
 ![demo-1](https://user-images.githubusercontent.com/20687560/28748231-46b5b912-7467-11e7-8778-3095172b7b19.png)
 
 ### Pick and Place Setup
+
+![alt text][image1]
+![alt text][image2]
+![alt text][image3]
 
 #### 1. For all three tabletop setups (`test*.world`), perform object recognition, then read in respective pick list (`pick_list_*.yaml`). Next construct the messages that would comprise a valid `PickPlace` request output them to `.yaml` format.
 
