@@ -62,6 +62,20 @@ extracted_outliers = cloud_filtered.extract(inliers, negative=True)
 
 #### Pipeline including clustering for segmentation implemented.  
 
+##### 1. Euclidean Clustering
+I used a PCL library function called EuclideanClusterExtraction() to perform a DBSCAN cluster search through the "Objects" 3D point cloud (extracted_outliers).
+ 
+DBSCAN stands for Density-Based Spatial Clustering of Applications with Noise. The algorithm creates clusters by grouping data points that are within some threshold distance `d` from the nearest point in the data. There is also a user-specified minimum and maximum cluster size. If the minimum is too low, we may see some of our objects split into two or more clusters. If the maximum is too small, we will see some object cloud points that are not included in their cluster. I chose the following criteria:  
+
+```
+    ec.set_ClusterTolerance(0.01)
+    ec.set_MinClusterSize(50)
+    ec.set_MaxClusterSize(50000) # I'm really just setting the maximum to NONE by specifying a large number 
+```
+
+##### 2. Create Cluster-Mask Point Cloud to visualize each cluster separately
+Here I simply applied a unique color to each of the unique objects to aid with cluster visualization.  
+
 #### Features extracted and SVM trained.  Object recognition implemented.
 
 ![demo-1](https://user-images.githubusercontent.com/20687560/28748231-46b5b912-7467-11e7-8778-3095172b7b19.png)
