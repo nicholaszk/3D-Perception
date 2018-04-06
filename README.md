@@ -77,14 +77,41 @@ DBSCAN stands for Density-Based Spatial Clustering of Applications with Noise. T
 Here I simply applied a unique color to each of the unique objects to aid with cluster visualization.  
 
 #### Features extracted and SVM trained.  Object recognition implemented.
+  
+##### Extract features
+I created histograms of the objects' colors using HSV instead of RGB. I also created histograms of the objects' normals. Both histograms were normalized and concatenated together. Based on my experimenting in the exercises, I found 60 - 80 histogram bins to be optimal for accuracy. Beyond 80 histogram bins, accuracy actually decreased.
 
-![demo-1](https://user-images.githubusercontent.com/20687560/28748231-46b5b912-7467-11e7-8778-3095172b7b19.png)
+```
+# Extract histogram features
+        chists = compute_color_histograms(ros_cluster, using_hsv=True)
+        normals = get_normals(ros_cluster)
+        nhists = compute_normal_histograms(normals)
+        # Compute the associated feature vector
+        feature = np.concatenate((chists, nhists))
+```
 
-### Pick and Place Setup
-
+##### Train data with SVM.
+The script capture_features.py was used to obtain multiple captures of the following objects:
+```
+models = [ \
+        'biscuits',
+        'soap',
+        'soap2',
+        'book',
+        'glue',
+        'sticky_notes',
+        'eraser',
+        'snacks']
+```
+Then we used train_svm.py to train our support vector machine by creating profiles off each object's multiple captures worth of histograms. For each object, I required 60 captures. My SVM achieved an accuracy of 90%, but if I had taken 200+ captures of each object, I expect I could have achieved a rating of 95%+. Here are the results in a confusion matrix:  
+  
 ![alt text][image1]
 ![alt text][image2]
 ![alt text][image3]
+
+### Pick and Place Setup
+  
+![demo-1](https://user-images.githubusercontent.com/20687560/28748231-46b5b912-7467-11e7-8778-3095172b7b19.png)
 
 #### 1. For all three tabletop setups (`test*.world`), perform object recognition, then read in respective pick list (`pick_list_*.yaml`). Next construct the messages that would comprise a valid `PickPlace` request output them to `.yaml` format.
 
