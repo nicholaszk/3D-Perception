@@ -28,6 +28,7 @@ Using RGB-D cameras to collect data, point clouds (PCs) were created, segmented,
 [image1]: ./perceptionPics/trainSvmScore.JPG
 [image2]: ./perceptionPics/normalizedConfusionMatrix.JPG
 [image3]: ./perceptionPics/nonNormalConfusionMatrix.JPG
+[image4]: ./error.JPG
   
 ### Writeup / README
 
@@ -108,7 +109,11 @@ Then we used train_svm.py to train our support vector machine by creating profil
 ![alt text][image1]
 ![alt text][image2]
 ![alt text][image3]
+  
+In the project's current state, the project_template.py script will not run due to the following error:  
 
+![alt text][image4]
+  
 ### Pick and Place Setup
   
 ![demo-1](https://user-images.githubusercontent.com/20687560/28748231-46b5b912-7467-11e7-8778-3095172b7b19.png)
